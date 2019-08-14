@@ -1,0 +1,11 @@
+default:
+  suites:
+    default:
+      paths:
+        - "%paths.base%/build/behat"
+      contexts:
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+#  extensions:
+#    Behat\MinkExtension:
+#       files_path:  "%paths.base%/build/behat/files"

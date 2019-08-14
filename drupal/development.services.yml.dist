@@ -1,0 +1,11 @@
+parameters:
+  # Enable cache debug headers.
+  # https://www.drupal.org/docs/8/api/responses/cacheableresponseinterface#debugging
+  http.response.debug_cacheability_headers: true
+services:
+  # Validate config schemas on imports just like when tests are running.
+  development.config_schema_checker:
+    class: Drupal\Core\Config\Development\ConfigSchemaChecker
+    arguments: ['@config.typed']
+    tags:
+      - { name: event_subscriber }
