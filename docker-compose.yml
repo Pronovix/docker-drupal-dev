@@ -2,7 +2,7 @@
 # THIS IS NOT A PRODUCTION READY CONFIGURATION!!! #
 ###################################################
 
-version: "3"
+version: "3.3"
 
 # TODO Add Traefik configuration.
 # If Traefik is not installed it does not do any harm, otherwise it provides a nice addition.
