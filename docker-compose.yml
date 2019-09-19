@@ -34,7 +34,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - PHP_IMAGE=${PHP_IMAGE:-wodby/drupal-php:7.2-dev-4.5.0}
+        - PHP_IMAGE=${PHP_IMAGE:-wodby/drupal-php:7.2-dev}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_php"
     working_dir: /mnt/files/local_mount/build
     environment:
@@ -78,7 +78,7 @@ services:
       # https://www.drupal.org/project/drupal/issues/2992069
       BROWSERTEST_OUTPUT_DIRECTORY: "/tmp"
       # Default configuration for Behat, Drupal Behat extension and others.
-      BEHAT_PARAMS: '{"extensions":{"Behat\\MinkExtension":{"base_url":"http://webserver","default_session":"selenium2","browser_name":"chrome","goutte":null,"selenium2":{"wd_host":"http://chrome:9515","browser":"chrome","capabilities":{"chrome":{"switches":["--disable-gpu","--headless","--no-sandbox","--disable-dev-shm-usage"]}}}},"Drupal\\DrupalExtension":{"blackbox":null,"api_driver":"drupal","drupal":{"drupal_root":"%paths.base%/build/web"},"drush":{"root":"%paths.base%/build/web"}},"Bex\\Behat\\ScreenshotExtension":{"image_drivers":{"local":{"screenshot_directory":"%paths.base%/build/behat/screenshosts"}}}}}'
+      BEHAT_PARAMS: '{"extensions":{"Behat\\MinkExtension":{"base_url":"http://webserver","default_session":"selenium2","browser_name":"chrome","goutte":null,"selenium2":{"wd_host":"http://chrome:9515","browser":"chrome","capabilities":{"chrome":{"switches":["--disable-gpu","--headless","--no-sandbox","--disable-dev-shm-usage"]}}}},"Drupal\\DrupalExtension":{"blackbox":null,"api_driver":"drupal","drupal":{"drupal_root":"%paths.base%/web"},"drush":{"root":"%paths.base%/web"}},"Bex\\Behat\\ScreenshotExtension":{"image_drivers":{"local":{"screenshot_directory":"%paths.base%/behat/screenshosts"}}}}}'
       ### MONOREPO HELPER SETTINGS ###
       # Because the build folder contains Drupal core and contrib modules the monorepo helper should not handle
       # these packages as monorepo packages.
