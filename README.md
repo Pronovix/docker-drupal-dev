@@ -16,7 +16,7 @@ It is recommended to use in combination with the `pronovix/drupal-qa` Composer p
 ## Usage
 
 ```sh
-$ cp -r PATH_TO_DRUPAL_DEV_FOLDER PROJECT_ROOT
+$ git clone https:/github.com/Pronovix/docker-drupal-dev.git drupal-dev
 $ mkdir build;
 $ ln -s drupal-dev/docker-compose.yml
 $ ln -s drupal-dev/Dockerfile
@@ -26,9 +26,6 @@ $ docker-compose up -d --build
 
 **Replace [YOUR_PROJECT_NAME] with a string that only contains lowercase letters and dashes. It must not contain spaces
 or any special characters. Ex.: my_awesome_project**
-
-TODO Replace the first command with `git clone https:/github.com/Pronovix/drupal-dev.git` if we decide to opensource
-this on Github.
 
 ## Installing Drupal 8 inside the running PHP container
 
