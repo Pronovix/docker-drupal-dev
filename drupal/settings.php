@@ -45,6 +45,7 @@ $settings['hash_salt'] = file_get_contents($hash_salt_file);
 $settings['container_yamls'][] = $app_root . '/sites/development.services.yml.dist';
 
 // Include settings.local.php with local overrides if exists.
-if (file_exists("{$app_root}/{$site_path}/settings.local.php")) {
-  include "{$app_root}/{$site_path}/settings.local.php";
+$filename = "{$app_root}/{$site_path}/settings.local.php";
+if (file_exists($filename) && realpath($filename) !== realpath(__FILE__)) {
+  include $filename;
 }
