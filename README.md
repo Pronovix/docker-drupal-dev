@@ -16,7 +16,7 @@ It is recommended to use in combination with the `pronovix/drupal-qa` Composer p
 ## Usage
 
 ```sh
-$ git clone https:/github.com/Pronovix/docker-drupal-dev.git drupal-dev
+$ git clone https://github.com/Pronovix/docker-drupal-dev.git drupal-dev
 $ mkdir build;
 $ ln -s drupal-dev/docker-compose.yml
 $ ln -s drupal-dev/Dockerfile
