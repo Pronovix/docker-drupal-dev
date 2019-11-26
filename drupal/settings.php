@@ -17,7 +17,7 @@ $databases['default']['default'] = [
   'driver' => getenv('DB_DRIVER'),
 ];
 
-$settings['trusted_host_patterns'] = ['^webserver$', '^localhost$'];
+$settings['trusted_host_patterns'] = ['^webserver$', '^localhost$', '^.+\.test$'];
 $settings['file_private_path'] = '/mnt/files/private';
 
 // Ideal for development and testing.

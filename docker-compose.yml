@@ -4,9 +4,6 @@
 
 version: "3.3"
 
-# TODO Add Traefik configuration.
-# If Traefik is not installed it does not do any harm, otherwise it provides a nice addition.
-
 services:
   database:
     # 10.2 is the default database because it has InnoDB 5.7, older versions are not supported by our modules.
@@ -19,12 +16,8 @@ services:
       MYSQL_DATABASE: ${DB_NAME:-drupal}
       MYSQL_USER: ${DB_USER:-drupal}
       MYSQL_PASSWORD: ${DB_PASSWORD:-password}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
-      POSTGRES_DB: ${DB_NAME:-drupal}
-      POSTGRES_USER: ${DB_USER:-drupal}
     volumes:
       - database_data:/var/lib/mysql
-#      - database_data:/var/lib/postgresql/data
 
   php:
     # Building a project specific PHP image is beneficial for us, because PhpStorm's PHPCS integration only allows
@@ -104,8 +97,6 @@ services:
     depends_on:
       - php
     environment:
-      APACHE_BACKEND_HOST: php
-      APACHE_SERVER_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
       NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "off"
       NGINX_BACKEND_HOST: php
       NGINX_VHOST_PRESET: drupal8
@@ -113,6 +104,13 @@ services:
       NGINX_STATIC_404_TRY_INDEX: 1
     volumes:
       - .:/mnt/files/local_mount
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME:-my_project}_webserver.rule=Host(`${COMPOSE_PROJECT_BASE_URL}`)"
+    networks:
+      - default
+      - web
 
   chrome:
     image: drupalci/webdriver-chromedriver:production
@@ -134,6 +132,14 @@ services:
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_mailhog"
     ports:
       - 8025
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME:-my_project}_mailhog.loadbalancer.server.port=8025"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME:-my_project}_mailhog.rule=Host(`mailhog.${COMPOSE_PROJECT_BASE_URL}`)"
+    networks:
+      - default
+      - web
 
   node:
     image: ${NODE_IMAGE:-wodby/node:12}
@@ -143,7 +149,19 @@ services:
     working_dir: /mnt/files/local_mount
     volumes:
       - .:/mnt/files/local_mount
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME:-my_project}_node.loadbalancer.server.port=3000"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME:-my_project}_node.rule=Host(`node.${COMPOSE_PROJECT_BASE_URL}`)"
+    networks:
+      - default
+      - web
 
 volumes:
   # Persistent database storage.
   database_data:
+
+networks:
+  web:
+    external: true
