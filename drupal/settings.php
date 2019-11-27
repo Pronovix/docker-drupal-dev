@@ -9,13 +9,21 @@ include "{$app_root}/{$site_path}/settings.shared.php";
 
 use Drupal\Component\Utility\Crypt;
 
+$db_driver = getenv('DB_DRIVER');
 $databases['default']['default'] = [
   'database' => getenv('DB_NAME'),
   'username' => getenv('DB_USER'),
   'password' => getenv('DB_PASSWORD'),
   'host' => getenv('DB_HOST'),
-  'driver' => getenv('DB_DRIVER'),
+  'driver' => $db_driver,
 ];
+
+// See: https://www.drupal.org/project/drupal/issues/1650930
+if ($db_driver === 'mysql') {
+  $databases['default']['default']['init_commands'] = [
+    'isolation' => "SET SESSION tx_isolation='READ-COMMITTED'",
+  ];
+}
 
 $settings['trusted_host_patterns'] = ['^webserver$', '^localhost$'];
 $settings['file_private_path'] = '/mnt/files/private';
