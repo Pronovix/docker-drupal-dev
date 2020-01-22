@@ -11,6 +11,7 @@
     "browser": true,
     "es6": true
   },
+  "parser": "babel-eslint",
   "globals": {
     "Drupal": true,
     "drupalSettings": true,
@@ -78,6 +79,13 @@
     "arrow-body-style": [
       "error",
       "always"
+    ],
+    "no-restricted-properties": [
+      2,
+      {
+        "object": "Math",
+        "property": "disallowedPropertyName"
+      }
     ]
   }
 }
