@@ -141,8 +141,6 @@ services:
     command: "tail -f /dev/null"
     # Should point to a directory with package.json.
     working_dir: /mnt/files/local_mount
-    environment:
-      NODE_PATH: /home/node/.npm-global/lib/node_modules
     volumes:
       - .:/mnt/files/local_mount
 
