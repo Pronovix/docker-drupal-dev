@@ -54,6 +54,6 @@ $settings['container_yamls'][] = $app_root . '/sites/development.services.yml.di
 
 // Include settings.local.php with local overrides if exists.
 $filename = "{$app_root}/{$site_path}/settings.local.php";
-if (file_exists($filename) && realpath($filename) !== realpath(__FILE__)) {
+if ((!isset($drupal_dev_do_not_include_settings_local_php) || !$drupal_dev_do_not_include_settings_local_php) && file_exists($filename) && realpath($filename) !== realpath(__FILE__)) {
   include $filename;
 }
