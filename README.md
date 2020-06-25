@@ -27,6 +27,12 @@ $ docker-compose up -d --build
 **Replace [YOUR_PROJECT_NAME] with a string that only contains lowercase letters and dashes. It must not contain spaces
 or any special characters. Ex.: my_awesome_project**
 
+### Switching between Composer versions
+
+You can use the `COMPOSER_VERSION` environment variable to define a specific Composer version that you would like to
+use. For backward-compatibility, by default still _Composer 1 is used by the template until the end of 2021 Q1_. If you
+would like to use Composer 2 you just need to set `COMPOSER_VERSION=2`.
+
 ## Installing Drupal 8 inside the running PHP container
 
 ```sh
