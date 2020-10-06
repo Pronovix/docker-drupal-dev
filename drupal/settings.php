@@ -34,7 +34,7 @@ $settings['extension_discovery_scan_tests'] = true;
 // Config sync and hash salt must be set otherwise Drupal adds the database
 // settings again to this file.
 $config_folder = "{$app_root}/../config";
-$config_directories['sync'] = $config_folder . '/sync';
+$settings['config_sync_directory'] = $config_folder . '/sync';
 $hash_salt_file = $config_folder . '/hash_salt.txt';
 if (!file_exists($hash_salt_file)) {
   if (!file_exists(basename($hash_salt_file))) {
