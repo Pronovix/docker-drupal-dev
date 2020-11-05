@@ -2,6 +2,8 @@ ARG PHP_IMAGE="wodby/drupal-php:7.2-dev"
 
 FROM ${PHP_IMAGE}
 
+ARG COMPOSER_VERSION
+
 USER root
 
 RUN set -xe; \
