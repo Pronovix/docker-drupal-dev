@@ -50,11 +50,17 @@ services:
       PHP_XDEBUG_IDEKEY: PHPSTORM
       PHP_XDEBUG_MAX_NESTING_LEVEL: 400
       PHP_IDE_CONFIG: serverName=docker
+      ##  xDebug 2.x
       # This is the default IP of the docker0 interface on Linux.
       # More details: https://wodby.com/docs/stacks/drupal/local/#xdebug
       # (The default host can be overridden from .bashrc/.zshrc with this environment variable.)
       PHP_XDEBUG_REMOTE_HOST: ${PHP_XDEBUG_REMOTE_HOST:-172.17.0.1} # Linux
-      # PHP_XDEBUG_REMOTE_HOST: host.docker.internal # Docker 18.03+ Mac/Win
+      # PHP_XDEBUG_CLIENT_HOST: host.docker.internal # Docker 18.03+ Mac/Win
+      # PHP_XDEBUG_CLIENT_HOST: 10.0.75.1 # Windows, Docker < 18.03
+      ## xDebug 3.x
+      PHP_XDEBUG_CLIENT_HOST: ${PHP_XDEBUG_REMOTE_HOST:-172.17.0.1}
+      PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE:-debug}
+      PHP_XDEBUG_START_WITH_REQUEST: ${PHP_XDEBUG_START_WITH_REQUEST:-yes}
       # Share Composer authentication tokens from the host with the container.
       # 0 as fallback value works thanks for this implementation:
       # https://github.com/composer/composer/blob/79af9d45afb6bcaac8b73ae6a8ae24414ddf8b4b/src/Composer/Factory.php#L204
