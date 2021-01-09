@@ -61,6 +61,14 @@ services:
       PHP_XDEBUG_CLIENT_HOST: ${PHP_XDEBUG_REMOTE_HOST:-172.17.0.1}
       PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE:-debug}
       PHP_XDEBUG_START_WITH_REQUEST: ${PHP_XDEBUG_START_WITH_REQUEST:-yes}
+      # A workaround which suppresses the error logged by xDebug's step debugger when
+      # there is no debugging client listening. Unfortunatelly this silences xDebug completely.
+      # If xDebug works unexpectedly this should be removed first because xDebug may tell via log entries
+      # what is going on.
+      # Related threads:
+      # https://stackoverflow.com/questions/65616198
+      # https://github.com/wodby/php/issues/134
+      XDEBUG_CONFIG: "log_level=0"
       # Share Composer authentication tokens from the host with the container.
       # 0 as fallback value works thanks for this implementation:
       # https://github.com/composer/composer/blob/79af9d45afb6bcaac8b73ae6a8ae24414ddf8b4b/src/Composer/Factory.php#L204
