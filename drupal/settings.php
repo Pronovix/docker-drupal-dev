@@ -31,10 +31,17 @@ $settings['file_private_path'] = '/mnt/files/private';
 // Ideal for development and testing.
 $settings['extension_discovery_scan_tests'] = true;
 
+// If config sync directory is set already, use that, otherwise fallback to
+// the default config/sync folder.
+if (array_key_exists('config_sync_directory', $settings)) {
+  $config_folder = $settings['config_sync_directory'];
+}
+else {
+  $config_folder = "{$app_root}/../config";
+  $settings['config_sync_directory'] = $config_folder . '/sync';
+}
 // Config sync and hash salt must be set otherwise Drupal adds the database
 // settings again to this file.
-$config_folder = "{$app_root}/../config";
-$settings['config_sync_directory'] = $config_folder . '/sync';
 $hash_salt_file = $config_folder . '/hash_salt.txt';
 if (!file_exists($hash_salt_file)) {
   if (!file_exists(basename($hash_salt_file))) {
