@@ -34,7 +34,7 @@ $settings['extension_discovery_scan_tests'] = true;
 // If config sync directory is set already, use that, otherwise fallback to
 // the default config/sync folder.
 if (array_key_exists('config_sync_directory', $settings)) {
-  $config_folder = $settings['config_sync_directory'];
+  $config_folder = dirname($settings['config_sync_directory']);
 }
 else {
   $config_folder = "{$app_root}/../config";
