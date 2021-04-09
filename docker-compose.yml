@@ -9,9 +9,9 @@ version: "3.3"
 
 services:
   database:
-    # 10.2 is the default database because it has InnoDB 5.7, older versions are not supported by our modules.
-    # https://stackoverflow.com/questions/1814532/1071-specified-key-was-too-long-max-key-length-is-767-bytes/41298282
-    image: ${DB_IMAGE:-wodby/mariadb:10.2}
+    # 10.3 is the default database because Drupal 9 requires MariaDB 10.3.7+.
+    # https://www.drupal.org/docs/understanding-drupal/how-drupal-9-was-made-and-what-is-included/environment-requirements-of
+    image: ${DB_IMAGE:-wodby/mariadb:10.3}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_database"
     stop_grace_period: 30s
     environment:
@@ -35,7 +35,6 @@ services:
       dockerfile: Dockerfile
       args:
         - PHP_IMAGE=${PHP_IMAGE:-wodby/drupal-php:7.3-dev}
-        - COMPOSER_VERSION=${COMPOSER_VERSION:-1}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_php"
     working_dir: /mnt/files/local_mount/build
     environment:
