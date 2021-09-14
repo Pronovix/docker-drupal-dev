@@ -122,6 +122,7 @@ services:
       APACHE_SERVER_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
       NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "off"
       NGINX_BACKEND_HOST: php
+      # TODO: Move to 'drupal9' once all the projects have moved to D9.
       NGINX_VHOST_PRESET: drupal8
       NGINX_SERVER_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
       NGINX_STATIC_404_TRY_INDEX: 1
