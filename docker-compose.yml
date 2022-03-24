@@ -111,7 +111,7 @@ services:
       - .:/mnt/files/local_mount
 
   webserver:
-    image: ${WEBSERVER_IMAGE:-wodby/nginx:1.17}
+    image: ${WEBSERVER_IMAGE:-wodby/nginx:1.20}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_webserver"
     ports:
       - 80
