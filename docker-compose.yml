@@ -143,6 +143,7 @@ services:
       - "--log-path=/tmp/chromedriver.log"
       - "--verbose"
       - "--whitelisted-ips="
+      - "--allowed-origins=*"
 
   mailhog:
     image: mailhog/mailhog
