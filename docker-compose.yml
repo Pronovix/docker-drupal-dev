@@ -34,7 +34,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - PHP_IMAGE=${PHP_IMAGE:-wodby/drupal-php:7.3-dev}
+        - PHP_IMAGE=${PHP_IMAGE:-wodby/drupal-php:7.4-dev}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_php"
     working_dir: /mnt/files/local_mount/build
     environment:
