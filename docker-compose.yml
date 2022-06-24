@@ -107,6 +107,16 @@ services:
       ### DRUPAL_QA_SETTINGS ###
       # Hardcode the location of the webroot because it could not be auto-detected if drupal-qa package is symlinked.
       DRUPAL_QA_PHPUNIT_DRUPAL_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
+      # Nightwatch
+      DRUPAL_TEST_BASE_URL: http://webserver
+      DRUPAL_TEST_DB_URL: ${DB_DRIVER:-mysql}://${DB_USER:-drupal}:${DB_PASSWORD-password}@${DB_HOST:-database}/${DB_NAME:-drupal}
+      DRUPAL_TEST_WEBDRIVER_HOSTNAME: chrome
+      DRUPAL_TEST_WEBDRIVER_PORT: 9515
+      DRUPAL_TEST_CHROMEDRIVER_AUTOSTART: 'false'
+      # --no-sandbox is needed, else chrome crashes. See: https://www.drupal.org/project/drupalci_environments/issues/3205271
+      DRUPAL_TEST_WEBDRIVER_CHROME_ARGS: "--disable-gpu --headless --no-sandbox"
+      DRUPAL_NIGHTWATCH_OUTPUT: reports/nightwatch
+      DRUPAL_NIGHTWATCH_IGNORE_DIRECTORIES: node_modules,vendor,.*,sites/*/files,sites/*/private,sites/simpletest
     volumes:
       - .:/mnt/files/local_mount
 
