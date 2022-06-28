@@ -136,6 +136,9 @@ services:
       NGINX_VHOST_PRESET: drupal8
       NGINX_SERVER_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
       NGINX_STATIC_404_TRY_INDEX: 1
+      # Make sure that YAML files (eg.: OpenAPI specs) can be served from public files.
+      # See: https://github.com/wodby/nginx/issues/75
+      NGINX_DRUPAL_FILES_STATIC_EXT_REGEX: txt|yaml|yml
     volumes:
       - .:/mnt/files/local_mount
 
