@@ -165,7 +165,7 @@ services:
       - 8025
 
   node:
-    image: ${NODE_IMAGE:-wodby/node:12}
+    image: ${NODE_IMAGE:-wodby/node:14}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_node"
     command: "tail -f /dev/null"
     # Should point to a directory with package.json.
