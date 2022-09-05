@@ -60,6 +60,7 @@ services:
       PHP_XDEBUG_CLIENT_HOST: ${PHP_XDEBUG_REMOTE_HOST:-172.17.0.1}
       PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE:-debug}
       PHP_XDEBUG_START_WITH_REQUEST: ${PHP_XDEBUG_START_WITH_REQUEST:-yes}
+      PHP_XDEBUG_PROFILER_OUTPUT_NAME: "cachegrind.out.%R-%t"
       # A workaround which suppresses the error logged by xDebug's step debugger when
       # there is no debugging client listening. Unfortunatelly this silences xDebug completely.
       # If xDebug works unexpectedly this should be removed first because xDebug may tell via log entries
