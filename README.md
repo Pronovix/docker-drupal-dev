@@ -1,6 +1,6 @@
 # Drupal development & testing environment
 
-Docker based Drupal environment for local development and testing. 
+Docker based Drupal environment for local development and testing.
 
 Supported testing frameworks: PHPUnit, Behat
 
@@ -59,9 +59,9 @@ Drush is not going to read the configuration from the symlinked settings.php. (T
 Check the _current_ port of the running webserver container with `docker-compose ps webserver`:
 
 ```sh
-              Name                            Command               State           Ports        
--------------------------------------------------------------------------------------------------
-my_module_webserver   /docker-entrypoint.sh sudo ...   Up      0.0.0.0:32794->80/tcp
+              Name                            Command               State           Ports
+--------------------------------------------------------------------------------------------------
+       my_module_webserver           /docker-entrypoint.sh sudo ...   Up      0.0.0.0:32794->80/tcp
 ```
 
 **Note: The exposed port changes every time when the `webserver` container restarts.**
@@ -74,7 +74,7 @@ If you generate a login URL with Drush then replace the `webserver` in the login
 
 In this configuration everything is preconfigured for running any Drupal 8's PHPUnit tests, included but not limited to
 PHPUnit Javascript tests. If you have PHPUnit installed as a Composer dependency in your project, then running PHPUnit
-tests is simple, here is a few examples: 
+tests is simple, here is a few examples:
 
 ```sh
 $ docker-compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer '\Drupal\Tests\Listeners\HtmlOutputPrinter' web/core/modules/node # Run all tests of the node module.
@@ -104,5 +104,20 @@ and [Drupal Behat extension](https://behat-drupal-extension.readthedocs.io/) doc
 
 ### Notes
 
-* It is recommended to install the `pronovix/drupal-qa` package with Composer because it ships a bunch of useful Behat
+It is recommended to install the `pronovix/drupal-qa` package with Composer because it ships a bunch of useful Behat
 extensions that could make your life easier when you are testing a site.
+
+## Checking outgoing emails
+
+MailHog captures all outgoing emails from this development environment. (Unless you override the default mail system
+configuration in Drupal.)
+
+If you would like to review all sent emails then check the local port of the `mailhog` container with `docker-compose ps mailhog`:
+
+```sh
+             Name             Command   State                 Ports
+----------------------------------------------------------------------------------
+      my_module_mailhog       MailHog     Up      1025/tcp, 0.0.0.0:32772->8025/tcp
+```
+
+and open the MailHog admin UI in your browser, e.g., `http://localhost:32772`.
