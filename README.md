@@ -1,5 +1,7 @@
 # Drupal development & testing environment
 
+> **Warning! Inform the pods and the infra team about the changes you're about to make in this repository. Every change affects downstream projects, and our builds depend on it.**
+
 Docker based Drupal environment for local development and testing.
 
 Supported testing frameworks: PHPUnit, Behat
