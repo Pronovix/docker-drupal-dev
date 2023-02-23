@@ -127,7 +127,7 @@ services:
     image: ${WEBSERVER_IMAGE:-wodby/nginx:1.20}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_webserver"
     ports:
-      - 80
+      - 127.0.0.1::80
     depends_on:
       - php
     environment:
@@ -164,7 +164,7 @@ services:
     image: mailhog/mailhog
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_mailhog"
     ports:
-      - 8025
+      - 127.0.0.1::8025
 
   node:
     image: ${NODE_IMAGE:-wodby/node:18}
