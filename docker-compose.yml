@@ -28,7 +28,7 @@ services:
 
   php:
     # Building a project specific PHP image is beneficial for us, because PhpStorm's PHPCS integration only allows
-    # to run PHPCS from a Docker image. It does not support to run PHPCS inside a container created by docker-compose.
+    # to run PHPCS from a Docker image. It does not support to run PHPCS inside a container created by docker compose.
     # See more details about PHPCS configuration in DEVELOPMENT_AND_TESTING.md
     build:
       context: .

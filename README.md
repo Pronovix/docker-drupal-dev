@@ -23,7 +23,7 @@ $ mkdir build;
 $ ln -s drupal-dev/docker-compose.yml
 $ ln -s drupal-dev/Dockerfile
 $ printf "COMPOSE_PROJECT_NAME=[YOUR_PROJECT_NAME]\n#You can find examples for available customization in the drupal-dev/examples/.env file.\n" > .env && source .env
-$ docker-compose up -d --build
+$ docker compose up -d --build
 ```
 
 **Replace [YOUR_PROJECT_NAME] with a string that only contains lowercase letters and dashes. It must not contain spaces
@@ -32,7 +32,7 @@ or any special characters. Ex.: my_awesome_project**
 ## Installing Drupal 8 inside the running PHP container
 
 ```sh
-$ docker-compose exec php composer create-project drupal-composer/drupal-project:8.x-dev ../build -n
+$ docker compose exec php composer create-project drupal-composer/drupal-project:8.x-dev ../build -n
 ```
 
 Now continue with an _optional_, but highly recommended step. Symlink `settings*.php` files and `development.services.yml.dist`
@@ -52,13 +52,13 @@ $ ln -s ../../../drupal-dev/drupal/development.services.yml.dist build/web/sites
 If you successfully symlinked these files then your environment is ready to be used. You can install the site on the UI
 or with Drush.
 
-You can install the site with the minimal install profile like this with Drush: `docker-compose exec php drush si minimal -y`.
+You can install the site with the minimal install profile like this with Drush: `docker compose exec php drush si minimal -y`.
 If the `build/config` folder does not exist you have to add `--db-url=$SIMPLETEST_DB` to the end of the command because
 Drush is not going to read the configuration from the symlinked settings.php. (This is probably a bug.)
 
 ## Accessing to the dev environment inside a browser
 
-Check the _current_ port of the running webserver container with `docker-compose ps webserver`:
+Check the _current_ port of the running webserver container with `docker compose ps webserver`:
 
 ```sh
               Name                            Command               State           Ports
@@ -79,9 +79,9 @@ PHPUnit Javascript tests. If you have PHPUnit installed as a Composer dependency
 tests is simple, here is a few examples:
 
 ```sh
-$ docker-compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer '\Drupal\Tests\Listeners\HtmlOutputPrinter' web/core/modules/node # Run all tests of the node module.
-$ docker-compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer 'Drupal\Tests\Listeners\HtmlOutputPrinter' web/core/modules/node/tests/src/Functional/NodeCreationTest.php # Run one specific test from the node module.
-$ docker-compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer '\Drupal\Tests\Listeners\HtmlOutputPrinter' --testsuite kernel # Run all kernel tests.
+$ docker compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer '\Drupal\Tests\Listeners\HtmlOutputPrinter' web/core/modules/node # Run all tests of the node module.
+$ docker compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer 'Drupal\Tests\Listeners\HtmlOutputPrinter' web/core/modules/node/tests/src/Functional/NodeCreationTest.php # Run one specific test from the node module.
+$ docker compose run --rm php ./vendor/bin/phpunit -c web/core -v --debug --printer '\Drupal\Tests\Listeners\HtmlOutputPrinter' --testsuite kernel # Run all kernel tests.
 ```
 
 You can find more information about available PHPUnit CLI parameters and configuration options in the official [PHPUnit
@@ -99,7 +99,7 @@ You can also add your `behat.yml` with overrides to this directory if you have o
 2. For demonstration purposes copy the `drupal-dev/examples/behat/login.feature` to `build/behat` with `mkdir build/behat && cp drupal-dev/examples/behat/login.feature build/behat`.
 3. Make sure the site is in an installed state. You can ensure that by importing a database or installing a site
 manually of with Config Installer.
-4. Run all Behat tests from the `build/behat` folder: `docker-compose exec php php vendor/bin/behat`.
+4. Run all Behat tests from the `build/behat` folder: `docker compose exec php php vendor/bin/behat`.
 
 You can find more information about available Behat CLI parameters and configuration options in the official [Behat](https://docs.behat.org)
 and [Drupal Behat extension](https://behat-drupal-extension.readthedocs.io/) documentation.
@@ -114,7 +114,7 @@ extensions that could make your life easier when you are testing a site.
 MailHog captures all outgoing emails from this development environment. (Unless you override the default mail system
 configuration in Drupal.)
 
-If you would like to review all sent emails then check the local port of the `mailhog` container with `docker-compose ps mailhog`:
+If you would like to review all sent emails then check the local port of the `mailhog` container with `docker compose ps mailhog`:
 
 ```sh
              Name             Command   State                 Ports
