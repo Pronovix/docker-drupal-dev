@@ -110,6 +110,11 @@ services:
       # * if you use OAuth tokens to authenticate to the remote origin (this works on all host OS-es)
       # * if you are on Linux and mount the SSH_AUTH_SOCK to the container.
       PRONOVIX_MONOREPO_HELPER_OFFLINE_MODE: 1
+      # Tell Composer that even if a project repo is currently in a detached
+      # head or in a feature/environment branch, use aliases of the "master"
+      # branch.
+      # https://getcomposer.org/doc/articles/aliases.md
+      COMPOSER_ROOT_VERSION: dev-master
       ### DRUPAL_QA_SETTINGS ###
       # Hardcode the location of the webroot because it could not be auto-detected if drupal-qa package is symlinked.
       DRUPAL_QA_PHPUNIT_DRUPAL_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
