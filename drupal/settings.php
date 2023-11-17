@@ -18,13 +18,6 @@ $databases['default']['default'] = [
   'driver' => $db_driver,
 ];
 
-// See: https://www.drupal.org/project/drupal/issues/1650930
-if ($db_driver === 'mysql') {
-  $databases['default']['default']['init_commands'] = [
-    'isolation' => "SET SESSION tx_isolation='READ-COMMITTED'",
-  ];
-}
-
 $settings['trusted_host_patterns'] = ['^webserver$', '^localhost$'];
 $settings['file_private_path'] = '/mnt/files/private';
 
