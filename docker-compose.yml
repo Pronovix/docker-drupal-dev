@@ -102,7 +102,7 @@ services:
       ### MONOREPO HELPER SETTINGS ###
       # Because the build folder contains Drupal core and contrib modules the monorepo helper should not handle
       # these packages as monorepo packages.
-      PRONOVIX_MONOREPO_HELPER_EXCLUDED_DIRECTORIES: 'build'
+      PRONOVIX_MONOREPO_HELPER_EXCLUDED_DIRECTORIES: 'build,php-libraries/package-installer'
       # Offline mode is enabled by default because usually the Docker container does not have access to GIT remote
       # origin. Because of this limitation you have to run `git fetch` regularly on the host.
       # You have two options to grants access to the Monorepo Helper to GIT remote origin if it is running inside a
