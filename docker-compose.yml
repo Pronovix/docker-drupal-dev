@@ -47,6 +47,8 @@ services:
       COMPOSER_DISABLE_XDEBUG_WARN: 1
       PHP_SENDMAIL_PATH: '"/usr/bin/dos2unix -u | /usr/sbin/ssmtp -t -f"'
       SSMTP_MAILHUB: mailhog:1025
+      # See R27444.
+      PHP_EXTENSIONS_DISABLE: ${PHP_EXTENSIONS_DISABLE:-xhprof}
       # (Xdebug can be toggled in CI environments by settings these env vars.)
       PHP_XDEBUG: ${PHP_XDEBUG:-1}
       PHP_XDEBUG_DEFAULT_ENABLE: ${PHP_XDEBUG_DEFAULT_ENABLE:-1}
