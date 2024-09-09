@@ -9,7 +9,7 @@ services:
   database:
     # 10.3 is the default database because Drupal 9 requires MariaDB 10.3.7+.
     # https://www.drupal.org/docs/understanding-drupal/how-drupal-9-was-made-and-what-is-included/environment-requirements-of
-    image: ${DB_IMAGE:-wodby/mariadb:10.5}
+    image: ${DB_IMAGE:-wodby/mariadb:10.6}
     # Wodby stopped generating images for arm64 which is causing issues for people with M1 Mac.
     # https://github.com/wodby/mariadb/issues/36
     # Workaround is to add a platform emulation.
