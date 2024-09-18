@@ -75,9 +75,7 @@ services:
       # https://github.com/wodby/php/issues/134
       XDEBUG_CONFIG: "log_level=0"
       # Share Composer authentication tokens from the host with the container.
-      # 0 as fallback value works thanks for this implementation:
-      # https://github.com/composer/composer/blob/79af9d45afb6bcaac8b73ae6a8ae24414ddf8b4b/src/Composer/Factory.php#L204
-      COMPOSER_AUTH: ${COMPOSER_AUTH:-0}
+      COMPOSER_AUTH: ${COMPOSER_AUTH:-{}}
       ### TESTING ENVIRONMENT ###
       # Run PHP-FPM as the default user (instead of www-data) to eliminate permission issues in testing.
       PHP_FPM_USER: wodby
