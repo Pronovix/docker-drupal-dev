@@ -149,6 +149,8 @@ services:
 
   chrome:
     image: drupalci/webdriver-chromedriver:production
+    volumes:
+      - .:/mnt/files/local_mount
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_chrome"
     depends_on:
       - webserver
