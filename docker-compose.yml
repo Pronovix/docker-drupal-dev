@@ -86,7 +86,7 @@ services:
       # Suppress deprecation warnings by default.
       # https://api.drupal.org/api/drupal/vendor%21symfony%21phpunit-bridge%21DeprecationErrorHandler.php/8.5.x
       SYMFONY_DEPRECATIONS_HELPER: ${SYMFONY_DEPRECATIONS_HELPER:-disabled}
-      MINK_DRIVER_ARGS_WEBDRIVER: '["chrome",{"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless","--no-sandbox","--disable-dev-shm-usage"]}},"http://chrome:9515"]'
+      MINK_DRIVER_ARGS_WEBDRIVER: '["chrome",{"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless","--no-sandbox","--disable-dev-shm-usage","--dns-prefetch-disable"]}},"http://chrome:9515"]'
       # This just sets the tmp folder for generated browser output files. If it is not set then no browser output is
       # generated. The actual browser output is always saved to DRUPAL_ROOT . '/sites/simpletest/browser_output'.
       # https://www.drupal.org/project/drupal/issues/2992069
