@@ -94,6 +94,7 @@ services:
       # Default configuration for Behat, Drupal Behat extension and others.
       BEHAT_PARAMS: '{"extensions":{"Behat\\MinkExtension":{"base_url":"http://webserver","default_session":"selenium2","browser_name":"chrome","goutte":null,"selenium2":{"wd_host":"http://chrome:9515","browser":"chrome","capabilities":{"chrome":{"switches":["--disable-gpu","--headless","--no-sandbox","--disable-dev-shm-usage"]}}}},"Drupal\\DrupalExtension":{"blackbox":null,"api_driver":"drupal","drupal":{"drupal_root":"%paths.base%/web"},"drush":{"root":"%paths.base%/web"}}}}'
       ### MONOREPO HELPER SETTINGS ###
+      PRONOVIX_MONOREPO_HELPER_MONOREPO_ROOT: "/mnt/files/local_mount"
       # Because the build folder contains Drupal core and contrib modules the monorepo helper should not handle
       # these packages as monorepo packages.
       PRONOVIX_MONOREPO_HELPER_EXCLUDED_DIRECTORIES: 'build,php-libraries/package-installer'
