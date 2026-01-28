@@ -146,6 +146,11 @@ services:
       # Make sure that YAML files (eg.: OpenAPI specs) can be served from public files.
       # See: https://github.com/wodby/nginx/issues/75
       NGINX_DRUPAL_FILES_STATIC_EXT_REGEX: txt|yaml|yml
+    # Allow serving .md URLs for local Markdown support.
+    # See:
+    # https://github.com/wodby/nginx?tab=readme-ov-file#drupal
+    # https://github.com/wodby/nginx/issues/93
+      NGINX_DRUPAL_NOT_FOUND_REGEX: \\.(engine|txt|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\\.php)?|xtmpl|yml|yaml)(~|\\.sw[op]|\\.bak|\\.orig|\\.save)?$|^(\\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template)$|(web\\.config|composer\\.(json|lock)|(package|package-lock)\\.json|yarn\\.lock)$|^#.*#$|\\.php(~|\\.sw[op]|\\.bak|\\.orig|\\.save)$
     volumes:
       - .:/mnt/files/local_mount
 
