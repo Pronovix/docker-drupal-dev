@@ -140,7 +140,7 @@ services:
       APACHE_SERVER_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
       NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "off"
       NGINX_BACKEND_HOST: php
-      NGINX_VHOST_PRESET: drupal11
+      NGINX_VHOST_PRESET: drupal9
       NGINX_SERVER_ROOT: ${WEB_ROOT:-/mnt/files/local_mount/build/web}
       NGINX_STATIC_404_TRY_INDEX: 1
       # Make sure that YAML files (eg.: OpenAPI specs) can be served from public files.
